@@ -11,6 +11,11 @@ const activeSummary = document.querySelector("#activeSummary");
 const unitGrid = document.querySelector("#unitGrid");
 const resultsMeta = document.querySelector("#resultsMeta");
 const searchInput = document.querySelector("#searchInput");
+const folderPages = document.querySelector("#folderPages");
+const folderPager = document.querySelector("#folderPager");
+const folderCurrent = document.querySelector("#folderCurrent");
+const folderTotal = document.querySelector("#folderTotal");
+const FOLDER_PAGE_COUNT = 45;
 
 function escapeHtml(value) {
   return String(value)
@@ -273,6 +278,89 @@ function renderExplorer() {
   renderUnits(levelsForView);
 }
 
+function formatFolderPage(page) {
+  return String(page).padStart(2, "0");
+}
+
+function setActiveFolderPage(page) {
+  if (!folderPager || !folderCurrent) return;
+
+  folderCurrent.textContent = formatFolderPage(page);
+  folderPager.querySelectorAll(".folder-page-button").forEach((button) => {
+    const isActive = Number(button.dataset.page) === page;
+    button.setAttribute("aria-current", isActive ? "page" : "false");
+    if (isActive) {
+      button.scrollIntoView({ block: "nearest", inline: "nearest" });
+    }
+  });
+}
+
+function renderFolderViewer() {
+  if (!folderPages || !folderPager) return;
+
+  const pages = Array.from({ length: FOLDER_PAGE_COUNT }, (_, index) => index + 1);
+
+  if (folderTotal) {
+    folderTotal.textContent = formatFolderPage(FOLDER_PAGE_COUNT);
+  }
+
+  folderPages.innerHTML = pages
+    .map((page) => {
+      const label = formatFolderPage(page);
+      return `
+        <figure class="folder-page" id="folder-page-${label}" data-page="${page}">
+          <img
+            src="assets/folder-marketing/page-${label}.jpg"
+            alt="开心口袋宣传册第 ${page} 页"
+            loading="${page <= 2 ? "eager" : "lazy"}"
+          />
+          <figcaption>Page ${label}</figcaption>
+        </figure>
+      `;
+    })
+    .join("");
+
+  folderPager.innerHTML = pages
+    .map(
+      (page) => `
+        <button class="folder-page-button" type="button" data-page="${page}" aria-current="${
+          page === 1 ? "page" : "false"
+        }">
+          ${formatFolderPage(page)}
+        </button>
+      `,
+    )
+    .join("");
+
+  folderPager.querySelectorAll(".folder-page-button").forEach((button) => {
+    button.addEventListener("click", () => {
+      const page = Number(button.dataset.page);
+      const target = folderPages.querySelector(`[data-page="${page}"]`);
+      target?.scrollIntoView({ behavior: "auto", block: "start" });
+      setActiveFolderPage(page);
+    });
+  });
+
+  const observer = new IntersectionObserver(
+    (entries) => {
+      const visibleEntry = entries
+        .filter((entry) => entry.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
+      if (visibleEntry) {
+        setActiveFolderPage(Number(visibleEntry.target.dataset.page));
+      }
+    },
+    {
+      root: folderPages,
+      threshold: [0.45, 0.6, 0.75],
+    },
+  );
+
+  folderPages.querySelectorAll(".folder-page").forEach((page) => observer.observe(page));
+  setActiveFolderPage(1);
+}
+
 searchInput.addEventListener("input", (event) => {
   query = event.target.value.trim();
   renderExplorer();
@@ -281,3 +369,4 @@ searchInput.addEventListener("input", (event) => {
 renderStats();
 renderLevelMap();
 renderExplorer();
+renderFolderViewer();
