@@ -1,0 +1,8 @@
+.vercel
+.vercelignore
+node_modules
+screenshots
+*.py
+*.mjs
+*.command
+gemini-visual-optimization-brief.md

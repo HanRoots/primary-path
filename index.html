@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Cambridge Primary Path 教材介绍</title>
+    <meta
+      name="description"
+      content="Cambridge Primary Path 教材体系介绍：6 个 Level、54 个 Unit，整合 Grammar、Oracy 与 Writing 三条能力线。"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="container nav">
+        <a class="brand" href="#top">
+          <span class="brand-title">Primary Path</span>
+          <span class="brand-partner brand-pocket">开心口袋</span>
+          <span class="brand-partner brand-reader">阅星人读书社</span>
+        </a>
+        <div class="nav-links">
+          <a href="#overview">定位</a>
+          <a href="#path">路径</a>
+          <a href="#explorer">浏览</a>
+        </div>
+      </div>
+    </header>
+
+    <main id="top" class="container">
+      <section class="hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <p class="eyebrow">Complete System · Grammar / Oracy / Writing</p>
+          <h1 id="hero-title">Cambridge Primary Path</h1>
+          <p class="lead">
+            一套以 Big Question 串联语言形式、口语表达、写作体裁和真实应用场景的小学英语路径。
+          </p>
+          <div class="hero-actions" aria-label="Page shortcuts">
+            <a class="button primary" href="#explorer">浏览完整体系</a>
+            <a class="button secondary" href="#path">查看 Level 概览</a>
+          </div>
+          <div class="stat-strip" id="heroStats" aria-label="Workbook statistics"></div>
+        </div>
+        <figure class="hero-visual">
+          <img
+            src="assets/path-grammar-map.png"
+            alt="Cambridge Primary Path complete learning system illustration"
+          />
+        </figure>
+      </section>
+
+      <section class="overview" id="overview" aria-labelledby="overview-title">
+        <div class="section-heading">
+          <p class="eyebrow">教材定位</p>
+          <h2 id="overview-title">从语言结构到表达产出</h2>
+        </div>
+        <div class="feature-grid">
+          <article class="feature">
+            <span class="feature-kicker">01</span>
+            <h3>Grammar 语法线</h3>
+            <p>每个单元明确核心语法点、应用例句、主题词汇和难度说明，从基础结构逐步进入复杂表达。</p>
+          </article>
+          <article class="feature">
+            <span class="feature-kicker">02</span>
+            <h3>Oracy 口语线</h3>
+            <p>围绕小组讨论、轮流发言、澄清、反馈、演讲和展示，形成可操作的课堂沟通能力。</p>
+          </article>
+          <article class="feature">
+            <span class="feature-kicker">03</span>
+            <h3>Writing 写作线</h3>
+            <p>以文本体裁和写作技巧为核心，从描述段落、信件、报告到评论、传记、议论文等连续进阶。</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="path-section" id="path" aria-labelledby="path-title">
+        <div class="section-heading">
+          <p class="eyebrow">Level Progression</p>
+          <h2 id="path-title">6 个 Level 的三线成长线</h2>
+        </div>
+        <div class="level-map" id="levelMap"></div>
+      </section>
+
+      <section class="explorer" id="explorer" aria-labelledby="explorer-title">
+        <div class="section-heading split">
+          <div>
+            <p class="eyebrow">Unit Explorer</p>
+            <h2 id="explorer-title">单元体系浏览</h2>
+          </div>
+        </div>
+
+        <div class="controls" aria-label="Filter units">
+          <div class="search-field">
+            <label for="searchInput">关键词</label>
+            <input id="searchInput" type="search" placeholder="搜索语法点、口语任务、写作体裁或核心问题" />
+          </div>
+          <div class="tab-panel">
+            <span class="control-label">能力线</span>
+            <div class="strand-tabs" id="strandTabs" role="group" aria-label="Select strand"></div>
+          </div>
+          <div class="tab-panel">
+            <span class="control-label">Level</span>
+            <div class="level-tabs" id="levelTabs" role="group" aria-label="Select level"></div>
+          </div>
+        </div>
+
+        <article class="active-summary" id="activeSummary"></article>
+        <div class="results-meta" id="resultsMeta"></div>
+        <div class="unit-grid" id="unitGrid"></div>
+      </section>
+    </main>
+
+    <script src="path-data.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
