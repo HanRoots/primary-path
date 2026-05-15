@@ -362,33 +362,104 @@ h1 {
   position: relative;
   display: flex;
   justify-content: center;
+  width: 100%;
+  margin: 0;
 }
 
-.hero-visual img {
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-lg);
-  max-width: 100%;
-  transform: perspective(1000px) rotateY(-5deg) rotateX(2deg);
-  transition: var(--transition);
+.hero-brand-card {
+  position: relative;
+  width: min(100%, 520px);
+  min-height: 560px;
+  overflow: hidden;
+  border-radius: 36px;
+  background: #d80b18;
+  box-shadow: 0 30px 72px rgba(154, 20, 26, 0.2);
 }
 
-.hero-visual:hover img {
-  transform: perspective(1000px) rotateY(0) rotateX(0) scale(1.02);
+.hero-brand-card::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  height: 118px;
+  background: white;
+  border-top: 1px solid rgba(255, 255, 255, 0.35);
+}
+
+.hero-card-doodle {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.15);
+  font-family: "Bradley Hand", "Comic Sans MS", "Marker Felt", cursive;
+  font-weight: 800;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+}
+
+.hero-card-doodle-one {
+  top: 56px;
+  left: -54px;
+  font-size: 78px;
+  transform: rotate(-9deg);
+}
+
+.hero-card-doodle-two {
+  top: 220px;
+  left: 58px;
+  font-size: 92px;
+  transform: rotate(-7deg);
 }
 
 .hero-pocket-watermark {
   position: absolute;
-  right: 22px;
-  bottom: 18px;
-  width: 92px;
-  height: 72px;
-  border-right: 22px solid #d80b18;
-  border-bottom: 22px solid #d80b18;
-  border-left: 22px solid #d80b18;
-  border-radius: 0 0 40px 40px;
-  opacity: 0.88;
-  filter: drop-shadow(0 12px 20px rgba(154, 20, 26, 0.16));
+  right: 74px;
+  bottom: 162px;
+  width: 190px;
+  height: 150px;
+  border-right: 48px solid white;
+  border-bottom: 48px solid white;
+  border-left: 48px solid white;
+  border-radius: 0 0 90px 90px;
+  opacity: 1;
+  filter: none;
   pointer-events: none;
+}
+
+.hero-card-footer {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 8px 12px;
+  align-items: center;
+  min-height: 118px;
+  padding: 26px 34px;
+  color: var(--ink);
+}
+
+.hero-card-footer .brand-pocket-icon {
+  grid-row: span 2;
+}
+
+.hero-card-footer strong {
+  color: #d80b18;
+  font-weight: 900;
+}
+
+.hero-card-footer span:nth-child(2) {
+  color: #d80b18;
+  font-size: 16px;
+  font-weight: 900;
+}
+
+.hero-card-footer span:last-child {
+  color: var(--ink-muted);
+  font-size: 13px;
+  font-weight: 800;
 }
 
 /* Section Common */
@@ -998,16 +1069,16 @@ section {
     max-width: 600px;
     margin: 0 auto;
   }
-  .hero-visual img {
-    transform: none;
-    max-width: 100%;
-  }
   .feature-grid, .level-map {
     grid-template-columns: repeat(2, 1fr);
   }
+  .hero-brand-card {
+    width: min(100%, 430px);
+    min-height: 500px;
+  }
   .hero-pocket-watermark {
-    right: 12px;
-    bottom: 14px;
+    right: 54px;
+    bottom: 145px;
     transform: scale(0.82);
     transform-origin: bottom right;
   }
@@ -1052,6 +1123,39 @@ section {
     width: 100%;
     flex-wrap: wrap;
     justify-content: center;
+  }
+  .hero-brand-card {
+    min-height: 390px;
+    border-radius: 28px;
+  }
+  .hero-brand-card::after {
+    height: 96px;
+  }
+  .hero-card-doodle-one {
+    top: 44px;
+    font-size: 54px;
+  }
+  .hero-card-doodle-two {
+    top: 162px;
+    left: 34px;
+    font-size: 64px;
+  }
+  .hero-pocket-watermark {
+    right: 34px;
+    bottom: 124px;
+    width: 144px;
+    height: 114px;
+    border-width: 36px;
+  }
+  .hero-card-footer {
+    min-height: 96px;
+    padding: 20px 24px;
+  }
+  .hero-card-footer span:nth-child(2) {
+    font-size: 14px;
+  }
+  .hero-card-footer span:last-child {
+    font-size: 11px;
   }
   .explorer .section-heading.split {
     flex-direction: column;
