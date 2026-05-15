@@ -1,5 +1,6 @@
 .vercel
 .vercelignore
+.DS_Store
 node_modules
 screenshots
 *.py
